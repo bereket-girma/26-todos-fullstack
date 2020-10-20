@@ -4,20 +4,19 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   display,
   getTodos,
-  addTodo,
-  removeTodo,
   addTheTodo,
   removeTheTodo,
+  updateTheTodo,
   selectTodos,
-  selectNewTodo,
 } from "./dashboardSlice.js";
 import "./dashboard.module.css";
 
 export function Dashboard() {
   const dispatch = useDispatch();
   const todos = useSelector(selectTodos);
-  const newTodo = useSelector(selectNewTodo);
+
   const [text, setText] = useState("");
+  //   const [status, setStatus] = useState("active");
 
   useEffect(() => {
     dispatch(getTodos());
@@ -32,6 +31,10 @@ export function Dashboard() {
     dispatch(addTheTodo(text));
 
     setText("");
+  }
+
+  function handleUpdate(id, status) {
+    dispatch(updateTheTodo({ id, status }));
   }
 
   return (
@@ -53,11 +56,22 @@ export function Dashboard() {
         <div className="todoStatus">Status</div>
       </div>
       {todos.map((item) => (
-        <div className="dashboardContainer2">
+        <div className="todoItems" id={item.id} key={item.id}>
           <div className="description">{item.description}</div>
-          <div className="status">
-            <div className="todo-status">{item.status}</div>
-          </div>
+          <div className="todo-status"> {item.status}</div>
+          <button
+            className="completeBtn"
+            onClick={() => handleUpdate(item.id, "completed")}
+          >
+            Completed
+          </button>
+         
+          <button
+            className="activeBtn"
+            onClick={() => handleUpdate(item.id, "active")}
+          >
+            Active
+          </button>
           <button className="removeBtn" onClick={() => handleRemove(item.id)}>
             x
           </button>
@@ -66,3 +80,4 @@ export function Dashboard() {
     </div>
   );
 }
+

@@ -9,30 +9,36 @@ form {
   position: relative;
 }
 
+.todoItems {
+  display: flex;
+  justify-content: space-around;
+
+  border: 1px solid #ddd;
+  padding: 10px 67px;
+}
+
 input {
   width: 60%;
   height: 30px;
-  /* margin: 0 auto 0; */
 }
 
 .enter-todo-btn {
   height: 36px;
-  /* width: 5px; */
 }
 
 .todoLabels {
   display: flex;
   justify-content: space-around;
   margin: 10px 5px;
+  justify-content: space-evenly;
 }
 
-.status {
-  display: flex;
-  
+.todoDescription {
+  position: relative;
+  right: 150px;
 }
 
-
-.dashboardContainer2 {
+.todoStatus {
   display: flex;
-  justify-content: space-around;
+  position: relative;
 }

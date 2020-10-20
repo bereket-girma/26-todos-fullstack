@@ -11,12 +11,6 @@ export const dashboardSlice = createSlice({
     display: (state, action) => {
       state.todos = action.payload;
     },
-    // addTodo: (state, action) => {
-    //   state.todos = action.payload;
-    // },
-    // removeTodo: (state, action) => {
-    //   state.todos = state.todos.filter((todo) => todo.id !== action.payload);
-    // },
   },
 });
 
@@ -36,8 +30,10 @@ export const removeTheTodo = (id) => (dispatch) => {
   axios.delete("/api/todos/" + id).then(() => dispatch(getTodos()));
 };
 
-export const updateTheTodo = (status) => (dispatch) => {
-  axios.patch("/api/todos").then((r) => dispatch(getTodos()));
+export const updateTheTodo = (text) => (dispatch) => {
+  axios
+    .patch("/api/todos/" + text.id, { status: text.status })
+    .then((r) => dispatch(getTodos()));
 };
 
 export const selectTodos = (state) => state.dashboard.todos;

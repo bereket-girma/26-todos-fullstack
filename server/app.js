@@ -49,23 +49,17 @@ app.delete("/api/todos/:id", (req, res) => {
   });
 });
 
-app.patch("/api/todos", (req, res) => {
+app.patch("/api/todos/:id", (req, res) => {
   // let status ="active"
+  const id = req.params.id;
+  const { status } = req.body;
   knex
-    .raw(`UPDATE todos SET description = ?, status = ? WHERE id = ?`, [
-      req.body.description,
-      req.body.status,
-      req.body.id,
-    ])
+    .raw(`UPDATE todos SET status = ? WHERE id = ?`, [status, id])
     .then((result) => {
       res.json(result.rows);
     });
 });
 
-// app.post("/api/todos", (req, res) => {
-//   todos.push(req.body);
-//   res.json({ message: "added the todo!" });
-// });
 
 app.listen(3001, (req, res) => {
   console.log("listening on port 3001");
