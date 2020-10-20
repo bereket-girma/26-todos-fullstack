@@ -1,0 +1,38 @@
+.container {
+  width: 80%;
+  margin: 0 auto 0;
+}
+
+form {
+  width: 80%;
+  margin-left: 270px;
+  position: relative;
+}
+
+input {
+  width: 60%;
+  height: 30px;
+  /* margin: 0 auto 0; */
+}
+
+.enter-todo-btn {
+  height: 36px;
+  /* width: 5px; */
+}
+
+.todoLabels {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 5px;
+}
+
+.status {
+  display: flex;
+  
+}
+
+
+.dashboardContainer2 {
+  display: flex;
+  justify-content: space-around;
+}
